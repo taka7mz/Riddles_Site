@@ -20,7 +20,7 @@ class RiddleController extends Controller
     {
         return view('riddles/create');
     }
-    public function store(Request $request, RiddleRequest $riddle)
+    public function store(Riddle $riddle, RiddleRequest $request)
     {
         $input = $request['riddle'];
         $riddle->fill($input)->save();

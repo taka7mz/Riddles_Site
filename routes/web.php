@@ -15,4 +15,4 @@ Route::get('/', 'RiddleController@index');
 Route::get('/riddles/create', 'RiddleController@create');
 Route::post('/riddles', 'RiddleController@store');
 Route::get('/riddles/{riddle}', 'RiddleController@show');
-
+Route::post('/riddles/{riddle}', 'RiddleController@show');
