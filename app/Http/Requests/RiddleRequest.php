@@ -22,7 +22,7 @@ class RiddleRequest extends FormRequest
         return [
             'riddle.title' => 'required|string|max:100',
             'riddle.text' => 'required|string',
-            'riddle.image'=> '',
+            'riddle.image'=> 'file|image|mimes:png,jpeg',
             'riddle.hint' => 'required|string|max:200',
             'riddle.answer' => 'required|string|max:200|regex:/^[^\x01-\x7E\x{FF61}-\x{FF9F}]+$/u',
             'riddle.commentary' => 'required|string',

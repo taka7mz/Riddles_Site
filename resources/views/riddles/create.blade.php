@@ -20,7 +20,8 @@
             </div>
             <div class="riddle_image">
                 <h2>謎画像</h2>
-                <input type="file" name="imgpath">
+                <input type="file" name="riddle[image]" accept="riddle[image]/png, riddle[image]/jpeg" value="{{ old('riddle.image') }}">
+                <p class="text__error" style="color:red">{{ $errors->first('riddle.image') }}</p>
             </div>
             <div class="hint">
                 <h2>謎ヒント</h2>

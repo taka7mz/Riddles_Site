@@ -22,7 +22,10 @@ class RiddleController extends Controller
     }
     public function store(Riddle $riddle, RiddleRequest $request)
     {
+        $file_name = $request->riddle['image']->getClientOriginalName();
+        $request->riddle['image']->storeAs('public/riddle_img',$file_name);
         $input = $request['riddle'];
+        $input['image'] = $file_name;
         $riddle->fill($input)->save();
         return redirect('/riddles/' . $riddle->id);
     }
