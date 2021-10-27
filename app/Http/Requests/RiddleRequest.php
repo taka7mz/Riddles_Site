@@ -20,11 +20,12 @@ class RiddleRequest extends FormRequest
     public function rules()
     {
         return [
-            'タイトル' => 'required|string|max:100',
-            '本文' => 'required|string',
-            'ヒント' => 'required|string|max:200',
-            '解答' => 'required|string|max:200',
-            '解説' => 'required|string',
+            'riddle.title' => 'required|string|max:100',
+            'riddle.text' => 'required|string',
+            'riddle.image'=> '',
+            'riddle.hint' => 'required|string|max:200',
+            'riddle.answer' => 'required|string|max:200|regex:/^[^\x01-\x7E\x{FF61}-\x{FF9F}]+$/u',
+            'riddle.commentary' => 'required|string',
         ];
     }
 }
