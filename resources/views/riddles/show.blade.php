@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <?php
     $hint = $riddle->hint;
     $hint_json = json_encode( $hint );
@@ -13,7 +16,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="/css/app.css">
-        <link rel="stylesheet" href="/judge.css">
+        <link rel="stylesheet" href="/css/judge.css">
     </head>
     <body>
         <h2 class="title">
@@ -21,12 +24,13 @@
         </h2>
         <div class="riddle">
             <div class="riddle_content">
-                <h3>{{ $riddle->text }}</h3>
+                <h3>{{ $riddle->text }}</h3><br>
                 @if($riddle->image !== NULL)
                     <img src='/storage/riddle_img/{{ $riddle->image }}'>
                 @endif
             </div>
         </div>
+        <br><br>
         <div class="answer">
             <form action="" method="POST">
  		        @csrf
@@ -39,29 +43,30 @@
                     <div class="window">
 	                    <label class="close" for="pop-up">×</label>
 	                    @if($riddle->answer === $_POST["user_ans"])
-                            <p class="text">正解</p>
+                            <p class="correct">正解</p>
                             <p class="text">解説：</p>
                             <p class="text"> {{$riddle->commentary}} </p>
                         @else
-                            <p class="text">不正解</p>
+                            <p class="incorrect">不正解</p>
                         @endif
                     </div>
                 </div>
             @endif
         </div>
-        <div class="hint">
-            <button type="submit" onclick="return Hint();">ヒント</button>
+        <br>
+
+        <label class="hint" for="pop-up_hint">ヒントを見る</label>
+        <input type="checkbox" id="pop-up_hint">
+        <div class="overlay_hint">
+        	<div class="window_hint">
+		        <label class="close" for="pop-up_hint">×</label>
+		        <p class="text"> {{$riddle->hint}} </p>
+	        </div>
         </div>
         <br><br>
         <div class="footer" align="center">
             <a href="/">戻る</a>
         </div>
-        
-        <script>
-            function Hint(){
-	            var hint = JSON.parse('<?php echo $hint_json; ?>');  //JSONデコード
-	            alert(hint);
-            }   
-        </script>
     </body>
 </html>
+@endsection
