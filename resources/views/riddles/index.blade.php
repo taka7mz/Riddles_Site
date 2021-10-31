@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -14,7 +17,7 @@
             @foreach($riddles as $riddle)
                 <div class='riddle' align="center">
                     <h3 class='title'>
-                        ・<a href="/riddles/{{ $riddle->id }}">{{ $riddle->title }}</a>
+                        <a href="/riddles/{{ $riddle->id }}">{{ $riddle->title }}</a>
                     </h3>
                     <p class='date'>投稿日：{{ $riddle->created_at }}</p>
                 </div>
@@ -25,3 +28,4 @@
         </div>
     </body>
 </html>
+@endsection
