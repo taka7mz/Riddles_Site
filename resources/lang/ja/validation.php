@@ -129,8 +129,29 @@ return [
     */
 
     'custom' => [
-        '属性名' => [
-            'ルール名' => 'カスタムメッセージ',
+        'riddle.title' => [
+            'required' => 'タイトルは必ず指定してください',
+            'max:100' => '100文字以内で入力してください',
+        ],
+        'riddle.text' => [
+            'required' => '謎本文は必ず指定してください',
+        ],
+        'riddle.image' => [
+            'file' => 'jpegかpngの画像ファイルを選択してください',
+            'image' => 'jpegかpngの画像ファイルを選択してください',
+            'mimes:png,jpeg' => 'jpegかpngの画像ファイルを選択してください',
+        ],
+        'riddle.hint' => [
+            'required' => 'ヒントは必ず指定してください',
+            'max:200' => '200文字以内で入力してください',
+        ],
+        'riddle.answer' => [
+            'required' => '解答は必ず指定してください',
+            'max:200' => '200文字以内で入力してください',
+            'regex:/^[^\x01-\x7E\x{FF61}-\x{FF9F}]+$/u' => '全角で入力してください',
+        ],
+        'riddle.commentary' => [
+            'required' => '解説は必ず指定してください',
         ],
     ],
 
