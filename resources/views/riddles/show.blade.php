@@ -13,6 +13,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/judge.css">
     </head>
     <body>
         <h2 class="title">
@@ -33,17 +34,19 @@
                 <input type="submit" value="解答する"/>
             </form>
             @if(!empty($_POST["user_ans"]))
-                @if($riddle->answer === $_POST["user_ans"])
-                    <script type="text/javascript">
-                        alert("正解");
-                        var commentary = JSON.parse('<?php echo $commentary_json; ?>');  //JSONデコード
-	                    alert(commentary);
-                    </script>
-                @else
-                    <script type="text/javascript">
-                        alert("不正解");
-                    </script>
-                @endif
+                <input type="checkbox" id="pop-up">
+                <div class="overlay">
+                    <div class="window">
+	                    <label class="close" for="pop-up">×</label>
+	                    @if($riddle->answer === $_POST["user_ans"])
+                            <p class="text">正解</p>
+                            <p class="text">解説：</p>
+                            <p class="text"> {{$riddle->commentary}} </p>
+                        @else
+                            <p class="text">不正解</p>
+                        @endif
+                    </div>
+                </div>
             @endif
         </div>
         <div class="hint">

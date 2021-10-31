@@ -7,7 +7,6 @@
     <body>
         <form action="/riddles" method="POST" enctype="multipart/form-data">
             @csrf
-            {{ $errors }}
             <div class="title">
                 <h2>謎タイトル</h2>
                 <input type="text" name="riddle[title]" placeholder="ここに入力" value="{{ old('riddle.title') }}"/>
