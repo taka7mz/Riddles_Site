@@ -15,9 +15,14 @@ class Riddle extends Model
         'answer',
         'commentary',
         'com_img',
+        'user_id',
     ];
-    public function getPaginateByLimit(int $limit = 10)
+    public function getPaginateByLimit(int $limit = 5)
     {
-        return $this->orderBy('updated_at', 'DESC')->paginate($limit);
+        return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit);
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

@@ -17,6 +17,7 @@ Route::post('/riddles', 'RiddleController@store');
 Route::get('/riddles/{riddle}', 'RiddleController@show');
 Route::post('/riddles/{riddle}', 'RiddleController@show');
 Auth::routes();
-Route::get('/users/mypage', 'MyPageController@mypage');
+Route::get('/users/mypage', 'UserController@mypage');
+Route::get('/users/{user}', 'UserController@user_riddles');
 
 Route::get('/home', 'HomeController@index')->name('home');
