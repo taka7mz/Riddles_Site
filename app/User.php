@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -36,4 +37,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function riddles()
+    {
+        return $this->hasMany('App\Riddle');
+    }
+
+    public function getOwnPaginateByLimit(int $limit_count = 5)
+    {
+        return $this::with('riddles')->find(Auth::id())->riddles()->orderBy('created_at', 'DESC')->paginate($limit_count);
+    }
+    
+    public function getUserPaginateByLimit(int $id)
+    {
+        return $this::with('riddles')->find($id)->riddles()->orderBy('created_at', 'DESC')->paginate(5);
+    }
 }

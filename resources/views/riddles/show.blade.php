@@ -22,6 +22,7 @@
         <h2 class="title">
             {{ $riddle->title }}
         </h2>
+        <p class='creator' align='right'>作成者：{{ optional($riddle->user)->name }}</p>
         <div class="riddle">
             <div class="riddle_content">
                 <h3>{{ $riddle->text }}</h3><br>

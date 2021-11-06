@@ -10,16 +10,10 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1 align="center">マイページ</h1>
-        <div class='create_button' align='right'>
-            <a href='/riddles/create'><input type="button" value="謎投稿"/></a>
-        </div>
-        <h3>ユーザーネーム：{{ Auth::user()->name }}</h3>
+        <h3 align='center'>{{ $user_riddle[0]->user->name }}の謎一覧</h3>
         <br>
-        <h3>投稿謎一覧</h3>
-        <br>
-        <div class='own_riddles'>
-            @foreach($own_riddles as $riddle)
+        <div class='user_riddles' align='center'>
+            @foreach($user_riddle as $riddle)
                 <div class='riddle'>
                     <h4 class='title'>
                         <a href="/riddles/{{ $riddle->id }}">{{ $riddle->title }}</a>
@@ -29,7 +23,7 @@
                 <br>
             @endforeach
             <div class='paginate'>
-                {{ $own_riddles->links() }}
+                {{ $user_riddle->links() }}
             </div>
         </div>
     </body>
