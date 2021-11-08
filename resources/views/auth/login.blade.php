@@ -67,5 +67,9 @@
             </div>
         </div>
     </div>
+    <br>
+    <div class="footer" align="center">
+        <a href="/">戻る</a>
+    </div>
 </div>
 @endsection
