@@ -26,9 +26,6 @@
                 {{ $user_riddle->links() }}
             </div>
         </div>
-        <div class="footer" align="center">
-            <a href="javascript:history.back()">戻る</a>
-        </div>
     </body>
 </html>
 @endsection

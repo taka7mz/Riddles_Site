@@ -30,11 +30,6 @@ class RiddleController extends Controller
         }
         $input += [ 'user_id' => $request->user()->id ];
         $riddle->fill($input)->save();
-        return redirect('/users/mypage');
-    }
-    public function delete(Riddle $riddle)
-    {
-        $riddle->delete();
-        return redirect('/users/mypage');
+        return redirect('/riddles/' . $riddle->id);
     }
 }
