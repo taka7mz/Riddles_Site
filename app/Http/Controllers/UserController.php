@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function mypage(User $user)
     {
-        return view('users/mypage')->with(['own_riddle' => $user->getOwnPaginateByLimit()]);
+        return view('users/mypage')->with(['own_riddles' => $user->getOwnPaginateByLimit()]);
     }
     public function user_riddles(User $user)
     {

@@ -3,11 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Riddle extends Model
 {
-    use SoftDeletes;
     protected $fillable = [
         'title',
         'text',
@@ -21,7 +19,7 @@ class Riddle extends Model
     ];
     public function getPaginateByLimit(int $limit = 5)
     {
-        return $this::with('user')->orderBy('created_at', 'DESC')->paginate($limit);
+        return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit);
     }
     public function user()
     {

@@ -43,7 +43,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Riddle');
     }
 
-    public function getOwnPaginateByLimit(int $limit_count = 3)
+    public function getOwnPaginateByLimit(int $limit_count = 5)
     {
         return $this::with('riddles')->find(Auth::id())->riddles()->orderBy('created_at', 'DESC')->paginate($limit_count);
     }

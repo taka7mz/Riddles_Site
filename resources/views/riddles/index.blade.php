@@ -11,7 +11,9 @@
     </head>
     <body>
         <h1 align="center">謎解き投稿サイト</h1>
-        <br>
+        <div class='create_button' align='right'>
+            <a href='/riddles/create'><input type="button" value="謎投稿"/></a>
+        </div>
         <h2 align="center">最新の謎一覧</h2>
         <br>
         <div class='riddles'>
@@ -21,11 +23,7 @@
                         <a href="/riddles/{{ $riddle->id }}">{{ $riddle->title }}</a>
                     </h3>
                     <p class='creator'>作成者：
-                        @if( optional($riddle->user)->id  === Auth::id())
-                            <a href="/users/mypage">{{ optional($riddle->user)->name }}</a>
-                        @else
-                            <a href="/users/{{ $riddle->user_id }}">{{ optional($riddle->user)->name }}</a>
-                        @endif
+                        <a href="/users/{{ $riddle->user_id }}">{{ optional($riddle->user)->name }}</a>
                     </p>
                     <p class='date'>投稿日：{{ $riddle->created_at }}</p>
                 </div>

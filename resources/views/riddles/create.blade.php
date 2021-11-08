@@ -42,7 +42,7 @@
             </div>
             <input type="submit" value="投稿する"/>
         </form>
-        <div class="back"><a href="/users/mypage"><input type="button" value="キャンセル"/></a></div>
+        <div class="back"><a href="/"><input type="button" value="キャンセル"/></a></div>
     </body>
 </html>
 @endsection
