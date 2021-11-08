@@ -45,7 +45,7 @@
         <div class="footer" align="center">
             <a href="/">トップへ戻る</a>
         </div>
-        
+
         <script>
             function deletePost(){
                 'use strict';
