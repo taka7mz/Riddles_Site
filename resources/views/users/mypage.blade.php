@@ -32,6 +32,14 @@
                 {{ $own_riddles->links() }}
             </div>
         </div>
+        <script>
+            function deletePost(){
+                'use strict';
+                if(confirm('削除すると元に戻せません。削除しますか？')){
+                   document.getElementById('form_delete').submit();
+                }
+            }   
+        </script>
     </body>
 </html>
 @endsection
