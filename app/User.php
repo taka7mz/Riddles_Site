@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Auth;
+use App\Correct_Answerer;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Riddle');
     }
+    
+    public function correct_answerers()
+    {
+        return $this->belongsToMany('App\Riddle', 'correct_answerers')->withPivot('answer_date');
+    }
 
     public function getOwnPaginateByLimit(int $limit_count = 3)
     {
@@ -51,5 +57,10 @@ class User extends Authenticatable
     public function getUserPaginateByLimit(int $id)
     {
         return $this::with('riddles')->find($id)->riddles()->orderBy('created_at', 'DESC')->paginate(5);
+    }
+    
+    public function getAnswerPaginateByLimit()
+    {
+        return $this::with('correct_answerers')->find(Auth::Id())->correct_answerers()->paginate(3);
     }
 }
