@@ -42,6 +42,29 @@
                 </div>
             </div>
         @endif
+        
+        <br>
+        <h3>正解した謎一覧</h3>
+        @if(empty($answer_riddle[0]))
+            <p>正解した謎はありません</p>
+        @else
+            <div class='answer_riddles'>
+                @foreach($answer_riddle as $riddle)
+                    <div class='riddle'>
+                        <h4 class='title'>
+                            <a href="/riddles/{{ $riddle->id }}">{{ $riddle->title }}</a>
+                        </h4>
+                        <p class='creator'>作成者：<a href="/users/{{ $riddle->user_id }}">{{ $riddle->user->name }}</a></p>
+                        <p class='date'>正解日：{{ $riddle->pivot->answer_date }}</p>
+                    </div>
+                    <br>
+                @endforeach
+                <div class='paginate'>
+                    {{ $answer_riddle->links() }}
+                </div>
+            </div>
+        @endif
+        
         <div class="footer" align="center">
             <a href="/">トップへ戻る</a>
         </div>

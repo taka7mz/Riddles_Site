@@ -23,8 +23,14 @@ class Riddle extends Model
     {
         return $this::with('user')->orderBy('created_at', 'DESC')->paginate($limit);
     }
+    
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+    
+    public function correct_users()
+    {
+        return $this->belongsToMany('App\User','correct_answerers')->withPivot('answer_date');
     }
 }

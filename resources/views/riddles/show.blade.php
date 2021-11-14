@@ -7,6 +7,7 @@
     $commentary = $riddle->commentary;
     $commentary_json = json_encode( $commentary );
 ?>
+
 <!DOCTYPE HTML>
 <html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
     <head>
@@ -28,35 +29,37 @@
                     @csrf
                     @method('DELETE')
                 </form>
-                <button type="submit" onclick="return deletePost();">削除</button> 
+                <button type='submit' onclick='return deletePost();'>削除</button> 
         </div>
         @else
             <p class='creator' align='right'>作成者：{{ optional($riddle->user)->name }}　　</p>
         @endif
-        <div class="riddle" align='center'>
-            <div class="riddle_content">
+        <div class='riddle' align='center'>
+            <div class='riddle_content'>
                 <h3>{{ $riddle->text }}</h3>
                 @if($riddle->image !== NULL)
                     <br><img src='/storage/riddle_img/{{ $riddle->image }}'>
                 @endif
             </div>
             <br><br>
-            <div class="answer">
-                <form action="" method="POST">
+            <div class='answer'>
+                <form action='/riddles/{{ $riddle->id }}/answer' method='POST'>
      		        @csrf
-                    <input type="text" name="user_ans" autocomplete="off" placeholder="全角で入力"/>
-                    <input type="submit" value="解答する"/>
+                    <input type='text' name='user_ans' autocomplete='off' placeholder='全角で入力'/>
+                    <input type='submit' value='解答する'/>
                 </form>
-                @if(!empty($_POST["user_ans"]))
+                @if($status)
                     <input type="checkbox" id="pop-up">
                     <div class="overlay">
                         <div class="window">
-    	                    <label class="close" for="pop-up">×</label>
-    	                    @if($riddle->answer === $_POST["user_ans"])
+    	                    <label class="close" for="pop-up">
+    	                        <a href="javascript:history.back()">×</a>
+    	                    </label>
+    	                    @if($status === 'correct')
                                 <p class="correct">正解</p>
                                 <p class="text">解説：</p>
                                 <p class="text"> {{$riddle->commentary}} </p>
-                            @else
+                            @elseif($status === 'false')
                                 <p class="incorrect">不正解</p>
                             @endif
                         </div>
