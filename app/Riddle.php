@@ -19,10 +19,6 @@ class Riddle extends Model
         'com_img',
         'user_id',
     ];
-    public function getPaginateByLimit(int $limit = 5)
-    {
-        return $this::with('user')->orderBy('created_at', 'DESC')->paginate($limit);
-    }
     
     public function user()
     {
@@ -32,5 +28,15 @@ class Riddle extends Model
     public function correct_users()
     {
         return $this->belongsToMany('App\User','correct_answerers')->withPivot('answer_date');
+    }
+    
+    public function reviews()
+    {
+        return $this->belongsToMany('App\User', 'reviews');
+    }
+    
+    public function getPaginateByLimit(int $limit = 5)
+    {
+        return $this::with('user')->orderBy('created_at', 'DESC')->paginate($limit);
     }
 }

@@ -1,12 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<?php
-    $hint = $riddle->hint;
-    $hint_json = json_encode( $hint );
-    $commentary = $riddle->commentary;
-    $commentary_json = json_encode( $commentary );
-?>
 
 <!DOCTYPE HTML>
 <html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
@@ -23,16 +17,23 @@
         <h2 class="title">
             ・{{ $riddle->title }}
         </h2>
+        <div class="review_average">
+            @if($average === -1)
+                <p>まだレビューはありません</p>
+            @else
+                <star-rating v-bind:star-size=25 v-bind:rating={{ $average }} v-bind:increment=0.01 v-bind:read-only="true"></star-rating>
+            @endif
+        </div>
         @if(Auth::id() === $riddle->user_id)
         <div class='delete' align='right'>
-                <form action="/riddles/{{ $riddle->id }}/delete" id="form_delete" method="post" style="display:inline">
-                    @csrf
-                    @method('DELETE')
-                </form>
-                <button type='submit' onclick='return deletePost();'>削除</button> 
+            <form action="/riddles/{{ $riddle->id }}/delete" id="form_delete" method="post" style="display:inline">
+                @csrf
+                @method('DELETE')
+            </form>
+            <button type='submit' onclick='return deletePost();'>削除</button> 
         </div>
         @else
-            <p class='creator' align='right'>作成者：{{ optional($riddle->user)->name }}　　</p>
+            <p class='creator' align='right'>作成者：{{ $riddle->user->name }}　　</p>
         @endif
         <div class='riddle' align='center'>
             <div class='riddle_content'>
@@ -75,12 +76,32 @@
     		        <p class="text"> {{$riddle->hint}} </p>
     	        </div>
             </div>
-         </div>
-        <br><br>
-        <div class="footer" align="center">
-            <a href="javascript:history.back()">戻る</a>
         </div>
-        
+        <br>
+        <div class="review">
+            <h4>・レビュー</h4>
+            @if($latest_review)
+                <h5>投稿者：{{ $latest_review->user->name }}</h5>
+                <p>{{ $latest_review->comment }}</p>
+                <p>{{ $latest_review->review_date }}</p>
+            @else
+                <p>まだレビューはありません</p>
+            @endif
+            <br>
+            @if(Auth::Id() && Auth::Id() !== $riddle->user_id && $reviewer === NULL)
+                <a href="/riddles/{{ $riddle->id }}/review">この謎をレビューする</a>
+            @elseif(Auth::Id() !== $riddle->user_id && $reviewer)
+                <p>あなたはこの謎をすでに評価済みです</p>
+            @endif
+        </div>
+        <div class="footer" align="center">
+            @if(Auth::Id() === $riddle->user_id)
+                <a href="/users/mypage">マイページへ</a>
+            @else
+                <a href="/users/{{ $riddle->user_id }}">{{ $riddle->user->name }}の謎一覧へ</a>
+            @endif
+            <br><a href="/">ホームへ</a>
+        </div>
         <script>
             function deletePost(){
                 'use strict';
