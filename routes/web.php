@@ -12,9 +12,11 @@
 */
 
 Route::get('/', 'RiddleController@index');
+Route::get('/riddles/{riddle}', 'RiddleController@show')->name('riddle.detail');
 Route::get('/riddles/create', 'RiddleController@create')->middleware('auth');
+Route::get('/riddles/{riddle}/review', 'RiddleController@review')->middleware('auth');
 Route::post('/riddles', 'RiddleController@store');
-Route::get('/riddles/{riddle}', 'RiddleController@show');
+Route::post('/riddles/{riddle}/review', 'RiddleController@register');
 Route::post('/riddles/{riddle}/answer', 'RiddleController@answer');
 Route::post('/riddles/{riddle}', 'RiddleController@show');
 Route::delete('/riddles/{riddle}/delete', 'RiddleController@delete');

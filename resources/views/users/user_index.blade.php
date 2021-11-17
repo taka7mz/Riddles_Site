@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="footer" align="center">
-            <a href="javascript:history.back()">戻る</a>
+            <a href="/">ホームへ</a>
         </div>
     </body>
 </html>

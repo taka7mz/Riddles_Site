@@ -18,8 +18,11 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+/* global Vue*/
 
+import StarRating from 'vue-star-rating'
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('star-rating', StarRating);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +30,18 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
 const app = new Vue({
     el: '#app',
+    methods: {
+    setRating: function(rating){
+      const star=document.getElementById("stars")
+      star.value=rating;
+      console.log(star.value);
+      this.rating= rating;
+    }
+  },
+    data: {
+        rating: 0
+    }
 });

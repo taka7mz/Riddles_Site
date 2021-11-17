@@ -13,13 +13,4 @@ class Correct_Answerer extends Model
     
     protected $table = 'correct_answerers';
     
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
-    
-    public function riddle()
-    {
-        return $this->belongsTo('App\Riddle');
-    }
 }

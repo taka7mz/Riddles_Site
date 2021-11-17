@@ -48,6 +48,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Riddle', 'correct_answerers')->withPivot('answer_date');
     }
+    
+    public function reviews()
+    {
+        return $this->belongsToMany('App\Riddle', 'reviews');
+    }
 
     public function getOwnPaginateByLimit(int $limit_count = 3)
     {
