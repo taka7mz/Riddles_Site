@@ -30,9 +30,19 @@ class Riddle extends Model
         return $this->belongsToMany('App\User','correct_answerers')->withPivot('answer_date');
     }
     
-    public function reviews()
+    public function review_users()
     {
         return $this->belongsToMany('App\User', 'reviews');
+    }
+    
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
+    
+    public function getLimit()
+    {
+        return $this::with('user')->orderBy('created_at', 'DESC')->limit(5)->get();
     }
     
     public function getPaginateByLimit(int $limit = 5)

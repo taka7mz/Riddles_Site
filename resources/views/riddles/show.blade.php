@@ -17,7 +17,7 @@
         <h2 class="title">
             ・{{ $riddle->title }}
         </h2>
-        <div class="review_average">
+        <div class="review_average" style="margin-left:15px">
             @if($average === -1)
                 <p>まだレビューはありません</p>
             @else
@@ -76,7 +76,7 @@
             </div>
         </div>
         <br>
-        <div class="review">
+        <div class="review" style="margin-left:15px">
             <h4>・最新のレビュー</h4>
             @if($latest_review)
                 <h5>投稿者：{{ $latest_review->user->name }}</h5>
