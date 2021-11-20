@@ -39,7 +39,7 @@
             <div class='riddle_content'>
                 <h3>{{ $riddle->text }}</h3>
                 @if($riddle->image)
-                    <br><img src='/storage/riddle_img/{{ $riddle->image }}'>
+                    <br><img src='{{ $riddle->image }}'>
                 @endif
             </div>
             <br><br>
