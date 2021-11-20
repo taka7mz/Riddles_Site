@@ -9,6 +9,7 @@ use App\Correct_Answerer;
 use App\Review;
 use App\User;
 use Auth;
+use Storage;
 
 class RiddleController extends Controller
 {
@@ -53,9 +54,11 @@ class RiddleController extends Controller
         if(!empty($request->riddle['image'])){
             $file_id = $request->riddle['title'];
             $file_ex = $request->riddle['image']->getClientOriginalExtension();
-            $file_path = $request->riddle['image']->storeAs('public/riddle_img', Auth::Id().'.'.$file_id.'.'.$file_ex);
             $file_name = Auth::Id().'.'.$file_id.'.'.$file_ex;
-            $input['image'] = $file_name;
+            $file_img = $request->riddle['image'];
+            $file_path = Storage::disk('s3')->putFile('riddle_img', $file_img, 'public');
+            $full_file_path = Storage::disk('s3')->url($file_path);
+            $input['image'] = $full_file_path;
         }
         $input += [ 'user_id' => $request->user()->id ];
         $riddle->fill($input)->save();
@@ -64,7 +67,6 @@ class RiddleController extends Controller
     
     public function delete(Riddle $riddle)
     {
-        dd($riddle->id);
         $riddle->delete();
         return redirect('/users/mypage');
     }
