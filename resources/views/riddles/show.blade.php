@@ -38,7 +38,7 @@
         <div class='riddle' align='center'>
             <div class='riddle_content'>
                 <h3>{{ $riddle->text }}</h3>
-                @if($riddle->image !== NULL)
+                @if($riddle->image)
                     <br><img src='/storage/riddle_img/{{ $riddle->image }}'>
                 @endif
             </div>
@@ -53,9 +53,7 @@
                     <input type="checkbox" id="pop-up">
                     <div class="overlay">
                         <div class="window">
-    	                    <label class="close" for="pop-up">
-    	                        <a href="javascript:history.back()">×</a>
-    	                    </label>
+    	                    <label class="close" for="pop-up">×</label>
     	                    @if($status === 'correct')
                                 <p class="correct">正解</p>
                                 <p class="text">解説：</p>
@@ -79,15 +77,17 @@
         </div>
         <br>
         <div class="review">
-            <h4>・レビュー</h4>
+            <h4>・最新のレビュー</h4>
             @if($latest_review)
                 <h5>投稿者：{{ $latest_review->user->name }}</h5>
+                <star-rating v-bind:star-size=20 v-bind:rating={{ $latest_review->star }} v-bind:increment=1 v-bind:read-only="true"></star-rating>
                 <p>{{ $latest_review->comment }}</p>
                 <p>{{ $latest_review->review_date }}</p>
+                <a href="/riddles/{{ $riddle->id }}/review/index">全てのレビューを参照する</a>
             @else
                 <p>まだレビューはありません</p>
             @endif
-            <br>
+            <br><br>
             @if(Auth::Id() && Auth::Id() !== $riddle->user_id && $reviewer === NULL)
                 <a href="/riddles/{{ $riddle->id }}/review">この謎をレビューする</a>
             @elseif(Auth::Id() !== $riddle->user_id && $reviewer)
@@ -102,6 +102,7 @@
             @endif
             <br><a href="/">ホームへ</a>
         </div>
+        
         <script>
             function deletePost(){
                 'use strict';

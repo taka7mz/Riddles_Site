@@ -17,8 +17,9 @@ class RiddleController extends Controller
         return view('riddles/index')->with(['riddles' => $riddle->getPaginateByLimit()]);
     }
     
-    public function show(Riddle $riddle, Review $review, $star = 0, $count = 0)
+    public function show(Riddle $riddle, Review $review, $star = 0, $count = 0, $status = NULL)
     {
+        $status = session('status');
         $reviewer = $review::where('user_id', Auth::Id())->where('riddle_id', $riddle->id)->first();
         $riddle_reviews = $review::where('riddle_id', $riddle->id)->get();
         $latest_review = $review::where('riddle_id', $riddle->id)->orderBy('review_date', 'DESC')->first();
@@ -28,8 +29,7 @@ class RiddleController extends Controller
         }
         if($count === 0){
             $average = -1;
-        }
-        else{
+        }else{
             $average = $star/$count;
         }
         return view('riddles/show')->with([
@@ -37,7 +37,7 @@ class RiddleController extends Controller
             'reviewer' => $reviewer, 
             'average' => $average, 
             'latest_review' => $latest_review,
-            'status' => NULL
+            'status' => $status
         ]);
     }
     
@@ -49,9 +49,12 @@ class RiddleController extends Controller
     public function store(Riddle $riddle, RiddleRequest $request)
     {
         $input = $request['riddle'];
+  
         if(!empty($request->riddle['image'])){
-            $file_name = $request->riddle['image']->getClientOriginalName();
-            $request->riddle['image']->storeAs('public/riddle_img',$file_name);
+            $file_id = $request->riddle['title'];
+            $file_ex = $request->riddle['image']->getClientOriginalExtension();
+            $file_path = $request->riddle['image']->storeAs('public/riddle_img', Auth::Id().'.'.$file_id.'.'.$file_ex);
+            $file_name = Auth::Id().'.'.$file_id.'.'.$file_ex;
             $input['image'] = $file_name;
         }
         $input += [ 'user_id' => $request->user()->id ];
@@ -61,6 +64,7 @@ class RiddleController extends Controller
     
     public function delete(Riddle $riddle)
     {
+        dd($riddle->id);
         $riddle->delete();
         return redirect('/users/mypage');
     }
@@ -75,30 +79,10 @@ class RiddleController extends Controller
                     $riddle->correct_users()->attach(Auth::Id());
                 }
             }
-            return view('riddles/show')->with(['riddle' => $riddle,'status' => 'correct']);
-            // $correct_answerer = new App\Correct_Answerer; 上と同じ動き
-            // $correct_answerer->user_id = Auth::Id();
-            // $correct_answerer->riddle_id = $riddle->id;
+            $judge = 'correct';
         }else{
-             return view('riddles/show')->with(['riddle' => $riddle,'status' => 'false']);
+            $judge = 'false';
         }
-            
-    }
-    
-    public function review(Riddle $riddle)
-    {
-        return view('/riddles/review')->with(['riddle' => $riddle]);
-    }
-    
-    public function register(Riddle $riddle, Request $request, Review $review)
-    {
-        $input = $request['review'];
-        $input['riddle_id'] = $riddle->id;
-        $input['user_id'] = Auth::id();
-        $review->fill($input)->save();
-        return redirect(route('riddle.detail', [
-            'riddle' => $riddle->id
-        ]));
-        
+        return redirect()->route('riddle.detail', ['riddle' => $riddle->id])->with(['status' => $judge]);
     }
 }
