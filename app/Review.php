@@ -17,6 +17,11 @@ class Review extends Model
         return $this->belongsTo('App\User');
     }
     
+    public function riddle()
+    {
+        return $this->belongsTo('App\Riddle');
+    }
+    
     public function PaginateReview($id)
     {
         return $this::where('riddle_id', $id)->orderBy('review_date', 'DESC')->paginate(5);

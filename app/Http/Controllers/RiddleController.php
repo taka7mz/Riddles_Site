@@ -10,19 +10,38 @@ use App\Review;
 use App\User;
 use Auth;
 use Storage;
+use DB;
 
 class RiddleController extends Controller
 {
+    public function top(Riddle $riddle, Review $review)
+    {
+        $rankings = DB::table('reviews')
+            ->join('riddles', 'riddles.id', '=', 'reviews.riddle_id')
+            ->join('users','riddles.user_id','=', 'users.id')
+            ->select('*', DB::raw('avg(reviews.star) as star_avg'), 'riddles.created_at as riddle_date')
+            ->groupBy('riddle_id')->orderBy('star_avg', 'DESC')->limit(5)->get();
+        return view('riddles/top')->with([
+            'riddles' => $riddle->getLimit(),
+            'rankings' => $rankings
+        ]);
+    }
+    
     public function index(Riddle $riddle)
     {
         return view('riddles/index')->with(['riddles' => $riddle->getPaginateByLimit()]);
+    }
+    
+    public function ranking(Riddle $riddle)
+    {
+        return view('riddles/index')->with(['riddles' => $riddle]);
     }
     
     public function show(Riddle $riddle, Review $review, $star = 0, $count = 0, $status = NULL)
     {
         $status = session('status');
         $reviewer = $review::where('user_id', Auth::Id())->where('riddle_id', $riddle->id)->first();
-        $riddle_reviews = $review::where('riddle_id', $riddle->id)->get();
+        $riddle_reviews = $riddle->reviews()->get();
         $latest_review = $review::where('riddle_id', $riddle->id)->orderBy('review_date', 'DESC')->first();
         foreach($riddle_reviews as $riddle_review){
             $star += $riddle_review->star;
@@ -50,11 +69,7 @@ class RiddleController extends Controller
     public function store(Riddle $riddle, RiddleRequest $request)
     {
         $input = $request['riddle'];
-  
         if(!empty($request->riddle['image'])){
-            $file_id = $request->riddle['title'];
-            $file_ex = $request->riddle['image']->getClientOriginalExtension();
-            $file_name = Auth::Id().'.'.$file_id.'.'.$file_ex;
             $file_img = $request->riddle['image'];
             $file_path = Storage::disk('s3')->putFile('riddle_img', $file_img, 'public');
             $full_file_path = Storage::disk('s3')->url($file_path);

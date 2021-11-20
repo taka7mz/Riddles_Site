@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'RiddleController@index');
+Route::get('/', 'RiddleController@top');
+Route::get('/riddles/index/least', 'RiddleController@index');
 Route::get('/riddles/{riddle}', 'RiddleController@show')->name('riddle.detail');
 Route::get('/riddles/new/create', 'RiddleController@create');
 Route::get('/riddles/{riddle}/review', 'ReviewController@review')->middleware('auth');
