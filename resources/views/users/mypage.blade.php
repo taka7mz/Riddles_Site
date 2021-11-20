@@ -12,7 +12,7 @@
     <body>
         <h1 align="center">マイページ</h1>
         <div class='create_button' align='right'>
-            <a href='/riddles/create'><input type="button" value="謎投稿"/></a>
+            <a href='/riddles/new/create'><input type="button" value="謎投稿"/></a>
         </div>
         <h3>ユーザーネーム：{{ Auth::user()->name }}</h3>
         <br>
@@ -28,11 +28,6 @@
                         <h4 class='title'>
                             <a href="/riddles/{{ $riddle->id }}">{{ $riddle->title }}</a>
                         </h4>
-                        <form action="/riddles/{{ $riddle->id }}/delete" id="form_delete" method="post" style="display:inline">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                        <button type="submit" onclick="return deletePost();">削除</button> 
                         <p class='date'>投稿日：{{ $riddle->created_at }}</p>
                     </div>
                     <br>
@@ -68,15 +63,6 @@
         <div class="footer" align="center">
             <a href="/">トップへ戻る</a>
         </div>
-
-        <script>
-            function deletePost(){
-                'use strict';
-                if(confirm('削除すると元に戻せません。削除しますか？')){
-                   document.getElementById('form_delete').submit();
-                }
-            }   
-        </script>
     </body>
 </html>
 @endsection
