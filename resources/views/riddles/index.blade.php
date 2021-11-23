@@ -29,7 +29,7 @@
                 </div>
                 <br>
             @endforeach
-            <div class='paginate'>
+            <div class='paginate' style="margin-left:650px">
                 {{ $riddles->links() }}
             </div><br>
             <a href="/">ホームへ</a>

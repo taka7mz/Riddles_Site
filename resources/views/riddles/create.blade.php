@@ -11,32 +11,32 @@
         <form action="/riddles" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
-                <h2>謎タイトル</h2>
+                <h3>謎タイトル</h3>
                 <input type="text" name="riddle[title]" placeholder="ここに入力" value="{{ old('riddle.title') }}"/>
                 <p class="title__error" style="color:red">{{ $errors->first('riddle.title') }}</p>
             </div>
             <div class="text">
-                <h2>謎本文</h2>
-                <textarea name="riddle[text]" placeholder="ここに入力">{{ old('riddle.text') }}</textarea>
+                <h3>謎本文</h3>
+                <textarea name="riddle[text]" size="100px" placeholder="ここに入力">{{ old('riddle.text') }}</textarea>
                 <p class="text__error" style="color:red">{{ $errors->first('riddle.text') }}</p>
             </div>
             <div class="riddle_image">
-                <h2>謎画像</h2>
+                <h3>謎画像</h3>
                 <input type="file" name="riddle[image]" accept="riddle[image]/png, riddle[image]/jpeg" value="{{ old('riddle.image') }}">
                 <p class="text__error" style="color:red">{{ $errors->first('riddle.image') }}</p>
             </div>
             <div class="hint">
-                <h2>謎ヒント</h2>
+                <h3>謎ヒント</h3>
                 <textarea name="riddle[hint]" placeholder="ここに入力">{{ old('riddle.hint') }}</textarea>
                 <p class="hint__error" style="color:red">{{ $errors->first('riddle.hint') }}</p>
             </div>
             <div class="answer">
-                <h2>解答</h2>
+                <h3>解答</h3>
                 <input type="text" name="riddle[answer]" placeholder="全角で入力" value="{{ old('riddle.answer') }}"/>
                 <p class="answer__error" style="color:red">{{ $errors->first('riddle.answer') }}</p>
             </div>
             <div class="commentary">
-                <h2>解説</h2>
+                <h3>解説</h3>
                 <textarea name="riddle[commentary]" placeholder="ここに入力">{{ old('riddle.commentary') }}</textarea>
                 <p class="commentary__error" style="color:red">{{ $errors->first('riddle.commentary') }}</p>
             </div>

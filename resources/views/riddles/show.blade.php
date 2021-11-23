@@ -30,7 +30,7 @@
                 @csrf
                 @method('DELETE')
             </form>
-            <button type='submit' onclick='return deletePost();'>削除</button> 
+            <button type='submit' onclick='return deleteRiddle();'>削除</button> 
         </div>
         @else
             <p class='creator' align='right'>作成者：{{ $riddle->user->name }}　　</p>
@@ -102,15 +102,15 @@
             @endif
             <br><a href="/">ホームへ</a>
         </div>
-        
-        <script>
-            function deletePost(){
-                'use strict';
-                if(confirm('削除すると元に戻せません。削除しますか？')){
-                   document.getElementById('form_delete').submit();
-                }
-            }   
-        </script>
     </body>
 </html>
 @endsection
+
+<script>
+    function deleteRiddle(){
+        'use strict';
+        if(confirm('削除すると元に戻せません。削除しますか？')){
+           document.getElementById('form_delete').submit();
+        }
+    }   
+</script>
