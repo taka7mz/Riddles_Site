@@ -12,7 +12,7 @@
     <body>
         <h1 align="center">謎解き投稿サイト</h1><br>
         <div class="row" align="center">
-             //投稿日が新しい謎を５件表示
+             <!--投稿日が新しい謎を５件表示-->
             <div class="col-6">
                 <h2 align="center">最新の謎</h2><br>
                 @foreach($riddles as $riddle)
@@ -32,7 +32,7 @@
                 @endforeach
                 <a href="/riddles/index/least">最新の謎一覧へ</a>
             </div>
-             //星評価平均が高い上位５位の謎を表示
+             <!--星評価平均が高い上位５位の謎を表示-->
             <div class="col-6">
                 <h2 align="center">評価の高い謎ランキング　TOP5</h2><br>
                 @foreach($rankings as $ranking)
