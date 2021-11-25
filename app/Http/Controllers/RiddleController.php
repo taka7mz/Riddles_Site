@@ -19,7 +19,7 @@ class RiddleController extends Controller
         $rankings = DB::table('reviews')
             ->join('riddles', 'riddles.id', '=', 'reviews.riddle_id')
             ->join('users','riddles.user_id','=', 'users.id')
-            ->select('*', DB::raw('avg(reviews.star) as star_avg'), 'riddles.created_at as riddle_date')
+            ->select('reviews.riddle_id','riddles.title', 'riddles.user_id','users.name', DB::raw('avg(reviews.star) as star_avg'), 'riddles.created_at as riddle_date')
             ->groupBy('riddle_id')->orderBy('star_avg', 'DESC')->limit(5)->get();
         return view('riddles/top')->with([
             'riddles' => $riddle->getLimit(),
