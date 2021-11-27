@@ -49,7 +49,7 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Riddle', 'correct_answerers')->withPivot('answer_date');
     }
     
-    public function reviews()
+    public function reviewUsers()
     {
         return $this->belongsToMany('App\Riddle', 'reviews');
     }

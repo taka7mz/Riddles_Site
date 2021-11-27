@@ -10,12 +10,12 @@ use Auth;
 
 class ReviewController extends Controller
 {
-    public function review(Riddle $riddle)
+    public function show(Riddle $riddle)
     {
         return view('/riddles/review')->with(['riddle' => $riddle]);
     }
     
-    public function register(Riddle $riddle, Request $request, Review $review)
+    public function store(Riddle $riddle, Request $request, Review $review)
     {
         $input = $request['review'];
         $input['riddle_id'] = $riddle->id;
