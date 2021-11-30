@@ -56,8 +56,7 @@
     	                    <label class="close" for="pop-up">×</label>
     	                    @if($status === 'correct')
                                 <p class="correct">正解</p>
-                                <p class="text">解説：</p>
-                                <p class="text"> {{$riddle->commentary}} </p>
+                                <p class="commentary">解説：{{$riddle->commentary}} </p>
                             @elseif($status === 'false')
                                 <p class="incorrect">不正解</p>
                             @endif
@@ -71,7 +70,7 @@
             <div class="overlay_hint">
             	<div class="window_hint">
     		        <label class="close" for="pop-up_hint">×</label>
-    		        <p class="text"> {{$riddle->hint}} </p>
+    		        <p class="hint_text"> {{$riddle->hint}} </p>
     	        </div>
             </div>
         </div>
@@ -88,7 +87,7 @@
                 <p>まだレビューはありません</p>
             @endif
             <br><br>
-            @if(Auth::Id() && Auth::Id() !== $riddle->user_id && $reviewer === NULL)
+            @if(Auth::Id() && Auth::Id() !== $riddle->user_id && $reviewer === false)
                 <a href="/riddles/{{ $riddle->id }}/review">この謎をレビューする</a>
             @elseif(Auth::Id() !== $riddle->user_id && $reviewer)
                 <p>あなたはこの謎をすでに評価済みです</p>

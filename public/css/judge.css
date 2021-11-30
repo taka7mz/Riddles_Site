@@ -26,9 +26,19 @@
 	transform: translate(-50%, -50%);
 }
 .correct {
+	text-align:center;
+	height:300px;
 	font-size: 46px;
-	color: red;
-	margin: 0;
+	color: red;;
+  	white-space: pre;
+}
+.commentary{
+	position:absolute;
+  	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:100%;
+	font-size: 20px;
 }
 .incorrect {
 	font-size: 46px;
@@ -56,6 +66,9 @@
   	line-height:40px;
   	border-radius:4px;
   	text-align:center;
+}
+.hint_text{
+	font-size:20px;
 }
 #pop-up_hint {
 	display: none; /* label でコントロールするので input は非表示に */
