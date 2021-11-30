@@ -38,14 +38,16 @@ class RiddleController extends Controller
         return view('riddles/index')->with(['riddles' => $riddle]);
     }
     
-    public function show(Riddle $riddle, Review $review, $star = 0, $count = 0, $status = NULL)
+    public function show(Riddle $riddle, $star = 0, $count = 0, $status = NULL)
     {
         $status = session('status');
-        $reviewer = Auth::user()->reviewUsers()->get()->contains($riddle);
-        // $review::where('user_id', Auth::Id())->where('riddle_id', $riddle->id)->first();
+        if(Auth::Id()){
+            $reviewer = Auth::user()->reviewUsers()->get()->contains($riddle);
+        }else{
+            $reviewer = NULL;
+        }
         $riddle_reviews = $riddle->reviews()->get();
         $latest_review = $riddle->reviews()->orderBy('review_date', 'DESC')->first();
-        // $review::where('riddle_id', $riddle->id)->orderBy('review_date', 'DESC')->first();
         foreach($riddle_reviews as $riddle_review){
             $star += $riddle_review->star;
             $count++;
