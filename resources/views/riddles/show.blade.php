@@ -47,6 +47,7 @@
                 <form action='/riddles/{{ $riddle->id }}/answer' method='POST'>
      		        @csrf
                     <input type='text' name='user_ans' autocomplete='off' placeholder='全角で入力'/>
+                    <p class="user_ans__error" style="color:red">{{ $errors->first('user_ans') }}</p>
                     <input type='submit' value='解答する'/>
                 </form>
                 @if($status)

@@ -1,0 +1,32 @@
+.ranking_index{
+	width: 680px;
+	height: 1000px;
+	border-radius: 50px; 
+	border-color: black;
+	border-style: solid;
+	border-top-width: 5px;
+	border-right-width: 5px;
+	border-bottom-width: 5px;
+	border-left-width: 5px;
+}
+
+.riddle_index{
+	width: 680px;
+	height: 1000px;
+	border-radius: 50px; 
+	border-color: black;
+	border-style: solid;
+	border-top-width: 5px;
+	border-right-width: 5px;
+	border-bottom-width: 5px;
+	border-left-width: 5px;
+}
+
+h2{
+	font-family: arial black, HiraKakuProN-W6;
+}
+
+.site_title{
+	font-family: HiraKakuProN-W6;
+	font-size: 46px;
+}

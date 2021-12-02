@@ -1,6 +1,7 @@
 .riddle{
-	width: 560px;
-	height: 140px;
+	width: 550px;
+	height: 130px;
+	border-radius: 50px; 
 	border-color: blue;
 	border-style: solid;
 	border-top-width: 3px;
@@ -10,8 +11,9 @@
 }
 
 .ranking_riddle{
-	width: 560px;
-	height: 150px;
+	width: 550px;
+	height: 170px;
+	border-radius: 50px;
 	border-color: orange;
 	border-style: solid;
 	border-top-width: 3px;

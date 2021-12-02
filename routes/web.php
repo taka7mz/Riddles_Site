@@ -14,11 +14,11 @@
 Route::get('/', 'RiddleController@top');
 Route::prefix('riddles')->group(function () {
     Route::get('index/least', 'RiddleController@index');
+    Route::get('create', 'RiddleController@create');
     Route::get('{riddle}', 'RiddleController@show')->name('riddle.detail');
-    Route::get('new/create', 'RiddleController@create');
     Route::get('{riddle}/review', 'ReviewController@show')->middleware('auth');
     Route::get('{riddle}/review/index', 'ReviewController@review_index');
-    Route::post(' ', 'RiddleController@store');
+    Route::post('', 'RiddleController@store');
     Route::post('{riddle}/review', 'ReviewController@store');
     Route::post('{riddle}/answer', 'RiddleController@answer');
     Route::post('{riddle}', 'RiddleController@show');
