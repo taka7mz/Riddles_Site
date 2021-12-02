@@ -8,6 +8,8 @@
         <title>謎解き投稿サイト</title>
     </head>
     <body>
+        <h4 style="color:red">〜謎を投稿する際の注意事項〜</h4>
+        <h5>書籍や他の人が制作した謎を投稿するのではなく、<span style="color:red">必ず自分のオリジナリティ</span>を加えた謎を投稿してください</h5><br>
         <form action="/riddles" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">

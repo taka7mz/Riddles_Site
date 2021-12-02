@@ -31,6 +31,7 @@
 	font-size: 46px;
 	color: red;;
   	white-space: pre;
+  	font-family: HiraKakuProN-W6;
 }
 .commentary{
 	position:absolute;
@@ -43,6 +44,7 @@
 .incorrect {
 	font-size: 46px;
 	color: blue;
+	font-family: HiraKakuProN-W6;
 	margin: 0;
 }
 .close {

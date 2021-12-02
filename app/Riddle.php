@@ -42,7 +42,7 @@ class Riddle extends Model
     
     public function getLimit()
     {
-        return $this::with('user')->orderBy('created_at', 'DESC')->limit(5)->get();
+        return $this::with('user')->orderBy('created_at', 'DESC')->limit(6)->get();
     }
     
     public function getPaginateByLimit(int $limit = 5)

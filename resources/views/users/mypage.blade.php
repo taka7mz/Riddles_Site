@@ -12,7 +12,7 @@
     <body>
         <h1 align="center">マイページ</h1>
         <div class='create_button' align='right'>
-            <a href='/riddles/new/create'><input type="button" value="謎投稿"/></a>
+            <a href='/riddles/create'><input type="button" value="謎投稿"/></a>
         </div>
         <h3>ユーザーネーム：{{ Auth::user()->name }}</h3>
         <br>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Riddle;
 use Illuminate\Http\Request;
 use App\Http\Requests\RiddleRequest;
+use App\Http\Requests\AnswerRequest;
 use App\Correct_Answerer;
 use App\Review;
 use App\User;
@@ -91,7 +92,7 @@ class RiddleController extends Controller
         return redirect('/users/mypage');
     }
     
-    public function answer(Riddle $riddle, Request $request, Correct_Answerer $correct_answerer)
+    public function answer(Riddle $riddle, AnswerRequest $request, Correct_Answerer $correct_answerer)
     {
         $answer = $request["user_ans"];
         if($riddle->answer === $answer){

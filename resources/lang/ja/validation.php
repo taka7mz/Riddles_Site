@@ -166,6 +166,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'user_ans' => '解答',
+    ],
 
 ];
