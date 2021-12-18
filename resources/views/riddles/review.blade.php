@@ -14,7 +14,7 @@
             @csrf
             <input name="review[star]" type="hidden" id="stars">
             <div id="star">
-                <star-rating v-bind:star-size=35 @rating-selected="setRating"></star-rating>
+                <star-rating v-bind:increment="0.5" v-bind:star-size=35 @rating-selected="setRating"></star-rating>
             </div><br>
             <div class="text">
                 <h3>コメント</h3>
