@@ -80,7 +80,7 @@
             <h4>・最新のレビュー</h4>
             @if($latest_review)
                 <h5>投稿者：{{ $latest_review->user->name }}</h5>
-                <star-rating v-bind:star-size=20 v-bind:rating={{ $latest_review->star }} v-bind:increment=1 v-bind:read-only="true"></star-rating>
+                <star-rating v-bind:increment="0.5" v-bind:star-size=20 v-bind:rating={{ $latest_review->star }} v-bind:increment=1 v-bind:read-only="true"></star-rating>
                 <p>{{ $latest_review->comment }}</p>
                 <p>{{ $latest_review->review_date }}</p>
                 <a href="/riddles/{{ $riddle->id }}/review/index">全てのレビューを参照する</a>
