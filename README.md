@@ -4,12 +4,19 @@
 
 URL：https://fathomless-cove-42519.herokuapp.com
 
-**サンプルアカウント**
+投稿や評価の確認をする際のサンプルアカウントです。
+
+**サンプルアカウント１（投稿用）**
 - ユーザーID：user1
 - メールアドレス：user1@sample.com
 - パスワード：sample.1
 
-謎タイトルが「屋台の謎」、「暗号の謎」、「迷路の謎」は、私が作成した謎です。もしよろしければ解いてみてください。
+**サンプルアカウント２（評価用）**
+- ユーザーID：user2
+- メールアドレス：user2@sample.com
+- パスワード：sample.2
+
+謎タイトルが「屋台の謎」、「暗号の謎」、「迷路の謎」は、私が作成した謎です。<br>謎を解くときはログイン不要ですので、もしよろしければ解いてみてください。
 
 ## 背景
 
@@ -24,13 +31,27 @@ URL：https://fathomless-cove-42519.herokuapp.com
 ## 機能一覧
 
 - 謎投稿機能（ログイン時のみマイページから可能）
-- 謎削除機能（自分が投稿した謎のみ）
+<img src="https://raw.githubusercontent.com/wiki/taka7mz/Riddles_Site/images/post.jpeg" width="360px">
+
+- マイページ機能
+- 正解した謎の記録機能（ログイン状態で正解した他の人の謎を記録し、マイページに表示）
+- 謎削除機能（自分が投稿した謎のみ、マイページに表示）
+<img src="https://raw.githubusercontent.com/wiki/taka7mz/Riddles_Site/images/mypage.jpeg" width="360px">
+
 - 解答，正誤判定機能（ログインなしでも可）
+<img src="https://raw.githubusercontent.com/wiki/taka7mz/Riddles_Site/images/correct.jpeg" width="360px">
+<img src="https://raw.githubusercontent.com/wiki/taka7mz/Riddles_Site/images/incorrect.jpeg" width="360px">
+
 - 会員登録，ログイン機能
 - Googleログイン機能
+<img src="https://raw.githubusercontent.com/wiki/taka7mz/Riddles_Site/images/googlelog.jpeg" width="360px">
+
 - 評価機能（コメント，星評価，ログイン時かつ他の人の謎のみ）
-- ランキング機能（星評価の平均値によるランキング，ログイン時かつ他の人の謎のみ）
-- 正解した謎の記録機能（ログイン状態で正解した他の人の謎を記録する
+<img src="https://raw.githubusercontent.com/wiki/taka7mz/Riddles_Site/images/review.jpeg" width="360px">
+
+- ランキング機能（星評価の平均値によるランキング）
+<img src="https://raw.githubusercontent.com/wiki/taka7mz/Riddles_Site/images/home.jpeg" width="360px">
+
 
 ## 工夫したところ
 
